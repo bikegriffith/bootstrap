@@ -149,8 +149,10 @@ angular.module('ui.bootstrap.tooltip', ['ui.bootstrap.position', 'ui.bootstrap.s
               if (!tooltip || !tooltip.html()) { return; }
 
               if (!positionTimeout) {
+                tooltip.hide(); // Hide to avoid FOUC until $timeout completes
                 positionTimeout = $timeout(function() {
                   // Reset the positioning and box size for correct width and height values.
+                  tooltip.show();
                   tooltip.css({ top: 0, left: 0, width: 'auto', height: 'auto', visibility: 'hidden' });
 
                   var ttBox = $position.position(tooltip);
